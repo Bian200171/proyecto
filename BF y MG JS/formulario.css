@@ -1,0 +1,16 @@
+/*selector de etiqueta*/
+h1{
+    color: rgb(255, 123, 0);
+}
+H2{
+    color: rgb(255, 17, 0);
+}
+/*selector de clase*/
+.oscuro{
+    background-color: rgb(255, 145, 2);
+    color: rgb(255, 136, 0);
+}
+/*selector ID*/
+#biografia{
+    background-color: rgb(238, 122, 27);
+}
