@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Juego de Adivinanza</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e2e8f0);
+      color: #0f172a;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #6366f1, #7c3aed);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    #mensaje {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    /* Colores según resultado */
+    .correcto {
+      color: #16a34a;
+    }
+
+    .incorrecto {
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Juego de Adivinanza</h1>
+
+  <button id="btn-jugar">Jugar</button>
+
+  <div id="mensaje"></div>
+
+  <script>
+    // Número secreto fijo
+    const numeroSecreto = 7;
+
+    const boton = document.getElement

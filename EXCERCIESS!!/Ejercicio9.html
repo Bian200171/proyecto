@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculador de Eventos</title>
+  <style>
+    /* --- ESTILOS GENERALES --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #100f64, #ffffff);
+      color: #0f172a;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 320px;
+    }
+
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #0e2949;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      background: linear-gradient(90deg, #f01212, #001aff);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>📆 Calculador de Eventos</h1>
+
+  <form id="form-evento">
+    <input type="text" id="nombreEvento" placeholder="Nombre del evento" required>
+    <input type="date" id="fechaEvento" required>
+    <button type="submit">Calcular</button>
+  </form>
+
+  <p id="resultado"></p>
+
+  <script>
+    const form = document.getElementById("form-evento");
+    const resultado = document.getElementById("resultado");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nombreEvento = document.getElementById("nombreEvento").value.trim();
+      const fechaEvento = new Date(document.getElementById("fechaEvento").value);
+      const hoy = new Date();
+
+      if (!nombreEvento || isNaN(fechaEvento)) {
+        resultado.textContent = "⚠️ Por favor, completá todos los campos correctamente.";
+        resultado.style.color = "#b91c1c";
+        return;
+      }
+
+      // Calcular diferencia en milisegundos y luego en días
+      const diferenciaMs = fechaEvento - hoy;
+      const diasRestantes = Math.ceil(diferenciaMs / (1000 * 60 * 60 * 24));
+
+      if (diasRestantes > 0) {
+        resultado.textContent =  Faltan ${diasRestantes} día${diasRestantes === 1 ? '' : 's'} para ${nombreEvento}.;
+        resultado.style.color = "#065f46";
+      } else if (diasRestantes === 0) {
+        resultado.textContent =  ¡El evento "${nombreEvento}" es hoy!;
+        resultado.style.color = "#2563eb";
+      } else {
+        resultado.textContent =  El evento "{nombreEvento}" ya ocurrió.;
+        resultado.style.color = "#b91c1c";
+      }
+    });
+  </script>
+</body>
+</html>

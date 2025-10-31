@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registro de Estudiante</title>
+  <style>
+    /* --- Estilos generales --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #9b4e84, #325e99);
+      color: #0f172a;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    form {
+      background: rgb(132, 8, 143);
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(23, 44, 94, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 320px;
+    }
+
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus {
+      border-color: #6366f1;
+    }
+
+    button {
+      background: linear-gradient(90deg, #ffcf33, #500164);
+      color: rgb(36, 17, 90);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registro de Estudiante</h1>
+
+  <form id="form-estudiante">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="text" id="apellido" placeholder="Apellido" required>
+    <input type="text" id="curso" placeholder="Curso" required>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("form-estudiante");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const curso = document.getElementById("curso").value.trim();
+
+      if (!nombre || !apellido || !curso) {
+        alert("⚠️ Por favor, completá todos los campos.");
+        return;
+      }
+
+      // Crear contenido de la nueva página
+      const nuevaPagina = `
+        <!doctype html>
+        <html lang="es">
+        <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <title>Bienvenida</title>
+          <style>
+            body {
+              height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              font-family: Arial, Helvetica, sans-serif;
+              background: linear-gradient(135deg, #dbeafe, #ede9fe);
+              color: #0f172a;
+              text-align: center;
+            }
+            h1 {
+              font-size: 2rem;
+              margin-bottom: 10px;
+            }
+            p {
+              font-size: 1.2rem;
+              margin-top: 5px;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>🎉 ¡Bienvenido/a, ${nombre} ${apellido}!</h1>
+          <p>Curso: <strong>${curso}</strong></p>
+          <p>Nos alegra tenerte con nosotros 😊</p>
+        </body>
+        </html>
+      `;
+
+      // Abrir nueva ventana con el saludo
+      const ventana = window.open("", "_blank");
+      ventana.document.open();
+      ventana.document.write(nuevaPagina);
+      ventana.document.close();
+    });
+  </script>
+</body>
+</html>

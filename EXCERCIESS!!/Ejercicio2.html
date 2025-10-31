@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cambiar colores de fondo y texto</title>
+  <style>
+    /* Estilos generales */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+
+    /* Contenedor de botones */
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    /* Botones */
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+      color: white;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Colores de botones */
+    .btn-azul { background: #2563eb; }
+    .btn-verde { background: #16a34a; }
+    .btn-rosa { background: #db2777; }
+  </style>
+</head>
+<body>
+  <h1>Presioná un botón para cambiar los colores</h1>
+
+  <div class="buttons">
+    <button class="btn-azul">Modo Azul</button>
+    <button class="btn-verde">Modo Verde</button>
+    <button class="btn-rosa">Modo Rosa</button>
+  </div>
+
+  <script>
+    // Referencias
+    const body = document.body;
+    const btnAzul = document.querySelector('.btn-azul');
+    const btnVerde = document.querySelector('.btn-verde');
+    const btnRosa = document.querySelector('.btn-rosa');
+
+    // Eventos para cambiar colores
+    btnAzul.addEventListener('click', () => {
+      body.style.backgroundColor = '#1e3a8a';
+      body.style.color = '#e0f2fe';
+    });
+
+    btnVerde.addEventListener('click', () => {
+      body.style.backgroundColor = '#064e3b';
+      body.style.color = '#d1fae5';
+    });
+
+    btnRosa.addEventListener('click', () => {
+      body.style.backgroundColor = '#831843';
+      body.style.color = '#ffe4e6';
+    });
+  </script>
+</body>
+</html>

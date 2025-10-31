@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calcular Promedio</title>
+  <style>
+    /* --- Estilos básicos --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #d1dd24, #1b6dda);
+      color: #0f172a;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #851313, #ffc013);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    /* Colores según el resultado */
+    .aprobado { color: #16a34a; }
+    .desaprobado { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <h1>Calcular Promedio</h1>
+
+  <button id="btn-calcular">Calcular promedio</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    const boton = document.getElementById("btn-calcular");
+    const resultado = document.getElementById("resultado");
+
+    boton.addEventListener("click", () => {
+      // Pedir las 3 notas
+      const n1 = Number(prompt("Ingresá la primera nota:"));
+      const n2 = Number(prompt("Ingresá la segunda nota:"));
+      const n3 = Number(prompt("Ingresá la tercera nota:"));
+
+      // Validar que sean números válidos
+      if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+        resultado.textContent = "⚠️ Debés ingresar solo números válidos.";
+        resultado.className = "";
+        return;
+      }
+
+      // Calcular el promedio
+      const promedio = (n1 + n2 + n3) / 3;
+
+      // Mostrar resultado
+      if (promedio >= 6) {
+        resultado.textContent =  Promedio; {promedio.toFixed(2)}  Aprobado;
+        resultado.className = "aprobado";
+      } else {
+        resultado.textContent =  Promedio; {promedio.toFixed(2)} Desaprobado;
+        resultado.className = "desaprobado";
+      }
+    });
+  </script>
+</body>
+</html>
