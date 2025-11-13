@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./San Lorenzo (2).css">
+</head>
+<body>
+<header>
+    <h1>San Lorenzo</h1>
+</header>
+  <nav class="oscuro">
+    <a>Biografía</a>
+    <a>Frases</a>
+  </nav>
+<main>
+   <section ID="biografia">
+    <h2>Biografia</h>
+        <p>San Lorenzo de Roma fue un diácono español del siglo III, mártir bajo el emperador Valeriano, conocido por distribuir los bienes de la Iglesia a los pobres y por su martirio en la parrilla el 10 de agosto del año 258. Su valentía y servicio caritativo, que culminó con su muerte por el fuego, es un testimonio de fe que inspiró a muchos y lo convirtió en un santo venerado en la Iglesia Católica, patrono de los diáconos, archivistas y de los cocineros</p></h2>
+    </section>
+   <section>
+    <h2>Frases celebres</h2>
+    <p>tu le concediste a este martil un valor impresionante para soportar tu sufrimiento por tu amor</p>
+</section ID="frases">
+</main>
+<footer class="oscuro">
+    <ol>
+    <li>Instagram</li>
+    <li>Twiter</li>
+</ol>
+</footer>
+<!-- SECCIÓN PARA JUGAR TRIVIA -->
+<section id="jugar-trivia">
+    <h2>¿Te animas a poner a prueba tus conocimientos?</h2>
+    <button id="abrirTrivia">Comenzar Trivia</button>
+  </section>
+  
+  <!-- MODAL -->
+  <div id="modalTrivia" class="modal">
+    <div class="modal-contenido">
+      <span class="cerrar">&times;</span>
+      
+      <!-- FORMULARIO DE TRIVIA -->
+      <h2>Trivia sobre San Lorenzo</h2>
+      <form id="formTrivia">
+        <p><strong>1.</strong> ¿Dónde nació San Lorenzo?</p>
+        <label><input type="radio" name="p1" value="Madrid"> Mesopotamia</label><br>
+        <label><input type="radio" name="p1" value="Peralta de la Sal"> Balbonía</label><br>
+        <label><input type="radio" name="p1" value="Roma"> Roma</label><br><br>
+  
+        <p><strong>2.</strong> ¿En qué año nació?</p>
+        <label><input type="radio" name="p2" value="1556"> 123 d.C</label><br>
+        <label><input type="radio" name="p2" value="1656"> 1233</label><br>
+        <label><input type="radio" name="p2" value="1756"> 225 d.C</label><br><br>
+  
+        <p><strong>3.</strong> ¿como murio?</p>
+        <label><input type="radio" name="p3" value="Zaragoza"> apiedrado</label><br>
+        <label><input type="radio" name="p3" value="Roma">crucificado</label><br>
+        <label><input type="radio" name="p3" value="Barcelona"> fue quemado</label><br><br>
+  
+        <p><strong>4.</strong> ¿Qué hizo?</p>
+        <label><input type="radio" name="p4" value="Fe y razón"> salvo a un niño en situación de pobreza</label><br>
+        <label><input type="radio" name="p4" value="Justicia y amor">defendió su religión en contra de los romanos </label><br>
+        <label><input type="radio" name="p4" value="Piedad y letras">curo a un soldado romano </label><br><br>
+  
+        <p><strong>5.</strong> ¿Qué día se celebra su festividad?</p>
+        <label><input type="radio" name="p5" value="25 de agosto"> 10 de agosto</label><br>
+        <label><input type="radio" name="p5" value="12 de octubre"> 22 de octubre</label><br>
+        <label><input type="radio" name="p5" value="15 de mayo"> 6 de mayo</label><br><br>
+  
+        <button type="submit">Enviar respuestas</button>
+      </form>
+  
+      <div id="resultado"></div>
+    </div>
+  </div>
+  
+  <!-- ESTILOS PARA EL MODAL-->
+  <style>
+  .modal {
+    display: none;
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+  .modal-contenido {
+    background: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  .cerrar {
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+  }
+  .correcta { color: green; }
+  .incorrecta { color: red; }
+  #resultado { margin-top: 1em; }
+  button {
+    background-color: #3e7bb6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #2d5f8a;
+  }
+  </style>
+  
+  <!-- SCRIPT para abrir/cerrar el MODAL y procesar la TRIVIA -->
+  <script>
+  const modal = document.getElementById("modalTrivia");
+  const btnAbrir = document.getElementById("abrirTrivia");
+  const btnCerrar = document.querySelector(".cerrar");
+  
+  btnAbrir.onclick = () => { modal.style.display = "block"; };
+  btnCerrar.onclick = () => { modal.style.display = "none"; };
+  window.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+  
+  document.getElementById("formTrivia").addEventListener("submit", function(e) {
+    e.preventDefault();
+  
+    let puntaje = 0;
+    let salida = "";
+  
+    // RESPUESTAS CORRECTAS
+    const respuestas = {
+      p1: "Roma",
+      p2: "225 d.C",
+      p3: "fue quemado",
+      p4: "Defendió su religión en contra de los romanos",
+      p5: "10 de agosto"
+    };
+  
+    for (let i = 1; i <= 5; i++) {
+      let r = document.querySelector(`input[name="p${i}"]:checked`);
+      if (r) {
+        if (r.value === respuestas[`p${i}`]) {
+          puntaje++;
+          salida += `<p class='correcta'>${i}. ✅ Correcta</p>`;
+        } else {
+          salida += `<p class='incorrecta'>${i}. ❌ Incorrecta. Correcta: ${respuestas[`p${i}`]}</p>`;
+        }
+      } else {
+        salida += `<p class='incorrecta'>${i}. ⚠️ No respondida. Correcta: ${respuestas[`p${i}`]}</p>`;
+      }
+    }
+  
+    // RETROALIMENTACIÓN FINAL
+    salida += `<h4>Puntaje final: ${puntaje} de 5</h4>`;
+    if (puntaje === 5) salida += "<p>🌟 ¡Excelente trabajo! Conoces muy bien la vida de San José de Calasanz.</p>";
+    else if (puntaje >= 3) salida += "<p>👍 Muy bien, conoces bastante sobre Calasanz.</p>";
+    else salida += "<p>📘 Puedes repasar la página para aprender más.</p>";
+  
+    document.getElementById("resultado").innerHTML = salida;
+  });
+  </script>
+  
+</body>
+
+</html>
+
+
